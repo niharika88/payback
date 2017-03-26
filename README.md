@@ -20,6 +20,7 @@ Application Start
 
 * `clone the repo`
 * `bundle install`
+* `rake db:create db:migrate`
 * `rails s`
 * `redis-server`- for sidekicq 
 * `bundle exec sidekiq` - for payback points calculation on the fly
