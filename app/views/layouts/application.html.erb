@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Payback</title>
+		<%= csrf_meta_tags %>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
+	<body>
+		<div class="container">
+			<% if user_signed_in? %>
+			<nav class="navbar navbar-toggleable-md  navbar-light bg-faded">
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="col-md-8"><%= "Welcome "+current_user.email if current_user.present?  %></div>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav mr-auto mt-2 mt-md-0">
+					</ul>
+					<form class="form-inline my-2 my-lg-0">
+						<% if user_signed_in? %>
+						<%= link_to "Sign Out",destroy_user_session_path, method: :delete   %>
+						<% else %>
+						<%= link_to "Login", new_user_session_path  %>
+						<% end %>
+					</form>
+				</div>
+			</nav>
+			<% end %>
+			<%= yield %>
+		</div>
+		
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	</body>
+</html>

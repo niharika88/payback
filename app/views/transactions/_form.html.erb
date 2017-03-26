@@ -1,0 +1,35 @@
+<div class="jumbotron">
+  <div class=form>
+    <%= form_for(transaction) do |f| %>
+    <% if transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+      <ul>
+        <% transaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="form-group">
+      <!-- <label for="exampleInputEmail1">Description</label> -->
+      <%= f.label :transaction_description, "Description", for: "exampleInputEmail1"  %>
+      <%= f.text_area :transaction_description, class: "form-control", id: "exampleInputEmail1"  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :amount_spent, "Expenditure In (INR)" %>
+      <!-- <label for="expen">Expenditure In (INR) </label> -->
+      <%= f.text_field :amount_spent, class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <!-- <label for="typ">Type</label> -->
+      <%= f.label :transaction_type, "Type", for: "typ"  %>
+      <%= f.text_field :transaction_type, class: "form-control", id: "typ" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+      <div style="float: right;" class= "btn btn-default btn-primary">  <%= link_to 'Main Page <<', transactions_path, style: "color: white;" %> </div>
+      <% end %>
+    </div>
+  </div>
+</div>

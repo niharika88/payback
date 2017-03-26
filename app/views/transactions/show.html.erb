@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+	<div class ="form">
+		<%= form_for(@transaction) do |f| %>
+		<div class="form-group">
+			<strong><label for="exampleInputEmail1">Description</label> </strong>
+			<p><%= @transaction.transaction_description %><p>
+			</div>
+			<div class="form-group">
+				<strong><label for="expen">Expenditure In (INR) </label></strong>
+				<p><%= @transaction.amount_spent %></p>
+			</div>
+			<div class="form-group">
+				<strong><label for="typ">Type</label></strong>
+				<p><%= @transaction.transaction_type %></p>
+			</div>
+			<div style="float: right;" class= "btn btn-default btn-primary">  <%= link_to 'Main Page <<', transactions_path, style: "color: white;" %>
+			</div>
+		</div>
+		<% end %>
+	</div>

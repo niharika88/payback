@@ -1,0 +1,77 @@
+<strong> <p id="notice"><%= notice %></p></strong>
+<div class="d-flex justify-content-between">
+  <div>
+    <p class="lead">
+      <i>Hi! Your payback points so far: <%= current_user.payback_point.point %></i>
+    </p>
+  </div>
+  <div class="btn">
+    <div class= "btn btn-default btn-primary"> <%= link_to 'New Transaction', new_transaction_path , style: "color: white;"%></div>
+  </div>
+</div>
+<div id="accordion" role="tablist" aria-multiselectable="true">
+  <% if (current_user.roles_mask == 1) %>
+  <div class="panel">
+    <div class="card">
+      <div class="card-header" role="tab" id="headingTwo">
+        <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Payback Points for all system users
+        </a>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="card-block">
+          <ul class="list-group">
+            <% User.all.each do |user| %>
+            <li class="list-group-item justify-content-between">
+              <%= user.email %>
+              <span class="badge badge-default badge-pill"> <%= user.payback_point.point %> </span>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <div class="panel">
+    <div class="card">
+      <div class="card-header" role="tab" id="headingOne">
+        <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Your past transactions
+        </a>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+        <div class="card-block">
+          <div class="container">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>DESCRIPTION</th>
+                  <th>EXPENDITURE IN (INR)</th>
+                  <th>TYPE</th>
+                  <th>ADDED ON</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% current_user.transactions.each_with_index do |transaction, i| %>
+                <tr>
+                  <th scope="row"><%= i %></th>
+                  <td><%= transaction.transaction_description %></td>
+                  <td><%= transaction.amount_spent %></td>
+                  <td><%= transaction.transaction_type %></td>
+                  <td><%= transaction.created_at.to_date %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
