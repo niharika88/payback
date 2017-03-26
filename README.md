@@ -1,24 +1,36 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Change Log
+============
 
-Things you may want to cover:
+This sample app creates two interfaces Admin and User respectively.
 
-* Ruby version
+Admin Role:
+==============
 
-* System dependencies
+* `Can create transaction for own` 
+* `can view Payback Points of other users`
 
-* Configuration
+User Role:
+=================
 
-* Database creation
+* `Can create transaction for own`
 
-* Database initialization
+Application Start
+=======================
 
-* How to run the test suite
+* `clone the repo`
+* `bundle install`
+* `rails s`
+* `redis-server`- for sidekicq 
+* `bundle exec sidekiq` - for payback points calculation on the fly
+* `rspec`- for testing
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Gems Used
+=======================
+* `Devise` User Authentication
+* `CanCan` User Roles, authorisation
+* `Bootstrap` Simple elegant views
+* `pg` postgres
+* `sidekiq` Job scheduling
+* `rspec` testing
+* `Factory girl` testing and mocking
